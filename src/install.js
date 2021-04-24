@@ -2,9 +2,7 @@ const { join } = require("path");
 const tar = require("tar");
 const fs = require("fs");
 const https = require("https");
-const NpmApi = require("npm-api");
-
-const npm = new NpmApi();
+const npm = require("./npm");
 
 const _download = (url, dir) => {
   fs.mkdirSync(dir, { recursive: true });
@@ -20,16 +18,11 @@ const _download = (url, dir) => {
   });
 };
 
-const _cleanVersion = (version) => {
-  return version.replace(/^\D/, "");
-};
-
 const _install = (name, version, installDir, callback) => {
   let dependencies;
 
-  const repo = npm.repo(name);
-  return repo
-    .version(version)
+  return npm
+    .get(name, version)
     .then((pkg) => {
       dependencies = pkg.dependencies;
       return _download(pkg.dist.tarball, installDir);
@@ -41,7 +34,7 @@ const _install = (name, version, installDir, callback) => {
           return new Promise((resolve, reject) => {
             _install(
               dependency[0],
-              _cleanVersion(dependency[1]),
+              dependency[1],
               join(installDir, "node_modules", dependency[0]),
               resolve
             );

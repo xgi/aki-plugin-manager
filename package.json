@@ -1,7 +1,7 @@
 {
   "name": "houdoku-plugin-manager",
   "description": "Plugin manager for Houdoku, a manga reader for the desktop",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "./src/index.js",
   "scripts": {
     "test": "jest"
@@ -27,7 +27,6 @@
   ],
   "homepage": "https://github.com/xgi/houdoku-plugin-manager",
   "dependencies": {
-    "npm-api": "^1.0.1",
     "pako": "^2.0.3",
     "rimraf": "^3.0.2",
     "tar": "^6.1.0"
