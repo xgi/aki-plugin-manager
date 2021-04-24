@@ -18,6 +18,7 @@ module.exports = (baseDir) => {
     if (!packageDir.startsWith("@")) {
       const packageFile = join(baseDir, packageDir, "package.json");
       packages.push([packageDir, _getVersion(packageFile)]);
+      return;
     }
 
     const subDirs = readdirSync(join(baseDir, packageDir));
@@ -28,4 +29,6 @@ module.exports = (baseDir) => {
       }
     });
   });
+
+  return packages;
 };
