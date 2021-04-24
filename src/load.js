@@ -8,5 +8,5 @@ module.exports = (baseDir, name, requireFn = require) => {
   const { main } = JSON.parse(readFileSync(packageFile, "utf-8"));
   const mainPath = resolve(pluginDir, main || "index.js");
 
-  requireFn(mainPath);
+  return requireFn(mainPath);
 };
