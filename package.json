@@ -1,14 +1,14 @@
 {
-  "name": "houdoku-plugin-manager",
-  "description": "Plugin manager for Houdoku, a manga reader for the desktop",
-  "version": "1.0.5",
+  "name": "aki-plugin-manager",
+  "description": "Lightweight at-runtime package manager and loader",
+  "version": "1.1.0",
   "main": "./src/index.js",
   "scripts": {
     "test": "jest"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xgi/houdoku-plugin-manager.git"
+    "url": "git+https://github.com/xgi/aki-plugin-manager.git"
   },
   "author": {
     "name": "Jake Robertson",
@@ -17,15 +17,13 @@
   },
   "license": "MIT",
   "keywords": [
-    "manga",
-    "manga-reader",
-    "comics",
-    "extensions",
     "plugins",
-    "javascript",
-    "js"
+    "plugin",
+    "packages",
+    "package",
+    "npm"
   ],
-  "homepage": "https://github.com/xgi/houdoku-plugin-manager",
+  "homepage": "https://github.com/xgi/aki-plugin-manager",
   "dependencies": {
     "pako": "^2.0.3",
     "rimraf": "^3.0.2",
