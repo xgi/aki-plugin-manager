@@ -1,7 +1,7 @@
 {
   "name": "aki-plugin-manager",
   "description": "Lightweight at-runtime package manager and loader",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "./src/index.js",
   "scripts": {
     "test": "jest"
