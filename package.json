@@ -1,0 +1,38 @@
+{
+  "name": "houdoku-plugin-manager",
+  "description": "Plugin manager for Houdoku, a manga reader for the desktop",
+  "version": "1.0.0",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xgi/houdoku-plugin-manager.git"
+  },
+  "author": {
+    "name": "Jake Robertson",
+    "email": "jake@faltro.com",
+    "url": "https://faltro.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "manga",
+    "manga-reader",
+    "comics",
+    "extensions",
+    "plugins",
+    "javascript",
+    "js"
+  ],
+  "homepage": "https://github.com/xgi/houdoku-plugin-manager",
+  "dependencies": {
+    "npm-api": "^1.0.1",
+    "pako": "^2.0.3",
+    "rimraf": "^3.0.2",
+    "tar": "^6.1.0"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
