@@ -1,7 +1,7 @@
 {
   "name": "houdoku-plugin-manager",
   "description": "Plugin manager for Houdoku, a manga reader for the desktop",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "main": "./src/index.js",
   "scripts": {
     "test": "jest"
