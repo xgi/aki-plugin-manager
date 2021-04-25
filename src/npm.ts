@@ -13,6 +13,30 @@ export type PackageManifest = {
   };
 };
 
+export type RegistrySearchResults = {
+  objects: {
+    package: RegistrySearchPackage;
+    score: {
+      final: number;
+      detail: {
+        quality: number;
+        popularity: number;
+        maintenance: number;
+      };
+    };
+    searchScore: number;
+  }[];
+  total: number;
+  time: string;
+};
+
+export type RegistrySearchPackage = {
+  name: string;
+  scope: string;
+  version: string;
+  description: string;
+};
+
 const _cleanVersion = (version: string): string => {
   if (version === "latest") return version;
   return version.replace(/^\D/, "");
@@ -37,5 +61,26 @@ export const getManifest = (
         });
       }
     );
+  });
+};
+
+export const searchRegistry = ({
+  text = "",
+  scope = "",
+}): Promise<RegistrySearchResults> => {
+  const scopeText = scope ? `scope:${scope} ` : "";
+
+  return new Promise((resolve, reject) => {
+    https.get(`${BASE_URL}/-/v1/search?text=${scopeText}${text}`, (stream) => {
+      let body = "";
+
+      stream.on("data", (chunk) => {
+        body += chunk;
+      });
+
+      stream.on("end", () => {
+        resolve(JSON.parse(body));
+      });
+    });
   });
 };
