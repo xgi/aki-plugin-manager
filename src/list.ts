@@ -1,30 +1,35 @@
-const { existsSync, readdirSync, readFileSync, statSync } = require("fs");
-const { join } = require("path");
+import { existsSync, readdirSync, readFileSync, statSync } from "fs";
+import { join } from "path";
 
-const _getVersion = (packageFile) => {
+const _getVersion = (packageFile: string): string => {
   const { version } = JSON.parse(readFileSync(packageFile, "utf-8"));
   return version;
 };
 
-module.exports = (baseDir) => {
+export const list = (baseDir: string): [string, string][] => {
   if (!existsSync(baseDir)) return [];
 
-  const packageDirs = readdirSync(baseDir).filter((name) =>
+  const packageDirs: string[] = readdirSync(baseDir).filter((name) =>
     statSync(join(baseDir, name)).isDirectory()
   );
 
-  let packages = [];
-  packageDirs.forEach((packageDir) => {
+  let packages: [string, string][] = [];
+  packageDirs.forEach((packageDir: string) => {
     if (!packageDir.startsWith("@")) {
       const packageFile = join(baseDir, packageDir, "package.json");
       packages.push([packageDir, _getVersion(packageFile)]);
       return;
     }
 
-    const subDirs = readdirSync(join(baseDir, packageDir));
+    const subDirs: string[] = readdirSync(join(baseDir, packageDir));
     subDirs.forEach((subDir) => {
       if (statSync(join(baseDir, packageDir, subDir)).isDirectory()) {
-        const packageFile = join(baseDir, packageDir, subDir, "package.json");
+        const packageFile: string = join(
+          baseDir,
+          packageDir,
+          subDir,
+          "package.json"
+        );
         packages.push([`${packageDir}/${subDir}`, _getVersion(packageFile)]);
       }
     });
