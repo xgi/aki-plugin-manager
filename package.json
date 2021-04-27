@@ -1,7 +1,7 @@
 {
   "name": "aki-plugin-manager",
   "description": "Lightweight at-runtime plugin manager and loader",
-  "version": "1.2.4",
+  "version": "1.2.6",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -26,6 +26,8 @@
     "plugin",
     "packages",
     "package",
+    "extensions",
+    "extension",
     "npm"
   ],
   "homepage": "https://github.com/xgi/aki-plugin-manager",
