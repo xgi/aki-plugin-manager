@@ -6,4 +6,7 @@ import { search } from "./search";
 import { load } from "./load";
 import { unload } from "./unload";
 
-export { manager, install, uninstall, list, search, load, unload };
+import { PackageManifest, RegistrySearchResults } from "./npm";
+
+export default { manager, install, uninstall, list, search, load, unload };
+export { PackageManifest, RegistrySearchResults };
