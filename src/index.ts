@@ -1,4 +1,3 @@
-import { manager } from "./manager";
 import { install } from "./install";
 import { uninstall } from "./uninstall";
 import { list } from "./list";
@@ -12,5 +11,6 @@ import {
   RegistrySearchPackage,
 } from "./npm";
 
-export default { manager, install, uninstall, list, search, load, unload };
+export default { install, uninstall, list, search, load, unload };
+export { install, uninstall, list, search, load, unload };
 export { PackageManifest, RegistrySearchResults, RegistrySearchPackage };
