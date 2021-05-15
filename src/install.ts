@@ -9,7 +9,7 @@ const _download = (url: string, dir: string) => {
 
   return new Promise<void>((resolve, reject) => {
     https.get(url, (stream) => {
-      stream.on("close", () => {
+      stream.on("end", () => {
         resolve();
       });
 
