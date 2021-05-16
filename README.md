@@ -63,7 +63,8 @@ mymod.sayHi();
 
 **Note:** Specifying a require function may be necessary if you are using
 webpack, or if you want to load a plugin in Electron's renderer thread.
-See the [Webpack Usage]() and [Electron Usage]() sections.
+See the [Webpack Usage](#Webpack-Usage) and
+[Electron Usage](#Electron-Usage) sections.
 
 #### Searching for packages
 
