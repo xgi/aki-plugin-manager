@@ -8,16 +8,26 @@ on:
       - master
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-16.04
+    strategy:
+      matrix:
+        node: ["12", "14"]
+    name: Node ${{ matrix.node }} test
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
       - run: npm install
-      - run: npm run tests
+      - run: npm test
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-16.04
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
       - run: npm install
       - run: npm run lint
