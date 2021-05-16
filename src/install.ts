@@ -1,15 +1,15 @@
-import { join } from "path";
-import tar from "tar";
-import fs from "fs";
-import https from "https";
-import { getManifest, PackageManifest } from "./npm";
+import { join } from 'path';
+import tar from 'tar';
+import fs from 'fs';
+import https from 'https';
+import { getManifest, PackageManifest } from './npm';
 
 const _download = (url: string, dir: string) => {
   fs.mkdirSync(dir, { recursive: true });
 
-  return new Promise<void>((resolve, reject) => {
+  return new Promise<void>((resolve) => {
     https.get(url, (stream) => {
-      stream.on("end", () => {
+      stream.on('end', () => {
         resolve();
       });
 
@@ -22,7 +22,7 @@ const _install = (
   name: string,
   version: string,
   installDir: string,
-  callback: (error?: Error) => void
+  callback: (error?: Error) => void,
 ) => {
   let dependencies: { [name: string]: string };
 
@@ -37,16 +37,17 @@ const _install = (
         funcs = Object.entries(dependencies).map(
           (dependency: [string, string]) => {
             return new Promise<Error | null>(
-              (resolve: (value: any) => void, reject) => {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              (resolve: (value: any) => void) => {
                 _install(
                   dependency[0],
                   dependency[1],
-                  join(installDir, "node_modules", dependency[0]),
-                  resolve
+                  join(installDir, 'node_modules', dependency[0]),
+                  resolve,
                 );
-              }
+              },
             );
-          }
+          },
         );
       }
 
@@ -64,8 +65,8 @@ export const install = (
   name: string,
   version: string,
   baseDir: string,
-  callback: (error?: Error) => void
-) => {
+  callback: (error?: Error) => void,
+): Promise<void> => {
   const installDir = join(baseDir, name);
 
   return _install(name, version, installDir, callback);

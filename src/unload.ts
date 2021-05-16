@@ -1,6 +1,6 @@
-import { join } from "path";
+import { join } from 'path';
 
-export const unload = (baseDir: string, name: string, requireFn = require) => {
+export const unload = (baseDir: string, name: string, requireFn = require): void => {
   const pluginDir: string = join(baseDir, name);
 
   Object.keys(requireFn.cache).forEach((item) => {

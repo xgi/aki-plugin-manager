@@ -1,8 +1,8 @@
-import { existsSync, readdirSync, readFileSync, statSync } from "fs";
-import { join } from "path";
+import { existsSync, readdirSync, readFileSync, statSync } from 'fs';
+import { join } from 'path';
 
 const _getVersion = (packageFile: string): string => {
-  const { version } = JSON.parse(readFileSync(packageFile, "utf-8"));
+  const { version } = JSON.parse(readFileSync(packageFile, 'utf-8'));
   return version;
 };
 
@@ -10,13 +10,13 @@ export const list = (baseDir: string): [string, string][] => {
   if (!existsSync(baseDir)) return [];
 
   const packageDirs: string[] = readdirSync(baseDir).filter((name) =>
-    statSync(join(baseDir, name)).isDirectory()
+    statSync(join(baseDir, name)).isDirectory(),
   );
 
-  let packages: [string, string][] = [];
+  const packages: [string, string][] = [];
   packageDirs.forEach((packageDir: string) => {
-    if (!packageDir.startsWith("@")) {
-      const packageFile = join(baseDir, packageDir, "package.json");
+    if (!packageDir.startsWith('@')) {
+      const packageFile = join(baseDir, packageDir, 'package.json');
       packages.push([packageDir, _getVersion(packageFile)]);
       return;
     }
@@ -28,7 +28,7 @@ export const list = (baseDir: string): [string, string][] => {
           baseDir,
           packageDir,
           subDir,
-          "package.json"
+          'package.json',
         );
         packages.push([`${packageDir}/${subDir}`, _getVersion(packageFile)]);
       }
