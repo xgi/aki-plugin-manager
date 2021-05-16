@@ -1,6 +1,7 @@
 # aki-plugin-manager
 
 ![npm](https://img.shields.io/npm/v/aki-plugin-manager?style=flat-square)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/xgi/aki-plugin-manager/CI?style=flat-square)
 
 Aki is a fast, lightweight plugin manager for Node.js applications. It
 supports finding, downloading, and loading packages dynamically at runtime.
