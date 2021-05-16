@@ -163,6 +163,13 @@ You _might_ also be able to pass `remote.require` as the requireFn for
 `aki.load`. This is very discouraged, particularly because `remote` is
 deprecated and you will likely have issues resolving plugin functions.
 
+## Building
+
+```bash
+npm install
+npm run build
+```
+
 ## Testing
 
 ```bash
