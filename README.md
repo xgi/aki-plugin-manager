@@ -19,7 +19,7 @@ install = (
   version: string, // package version, e.g. "1.2.3" or "latest"
   baseDir: string, // directory to save plugins
   callback: (error?: Error) => void // called after installation
-)
+): Promise<void>
 ```
 
 ```js
@@ -51,7 +51,7 @@ load = (
   baseDir: string,    // directory where plugins are saved
   name: string,       // name of package to load
   requireFn = require // (optional) specify a require function
-)
+): any
 ```
 
 ```js
@@ -91,11 +91,11 @@ aki.search({ text: "foo" }).then((results: RegistrySearchResults) => {
 #### Unload package
 
 ```js
-load = (
+unload = (
   baseDir: string,    // directory where plugins are saved
   name: string,       // name of loaded package
   requireFn = require // (optional) specify a require function
-)
+): void
 ```
 
 ```js
@@ -115,7 +115,7 @@ uninstall = (
   name: string,    // name of installed package
   baseDir: string, // directory where plugins are saved
   callback: () => void // called after uninstallation
-)
+): void
 ```
 
 ```js
