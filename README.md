@@ -9,6 +9,20 @@ supports finding, downloading, and loading packages dynamically at runtime.
 Aki currently only retrieves packages from npm, although alternative
 sources may be added in the future.
 
+- Usage
+  - [Install a package](#install-a-package)
+  - [List installed packages](#list-installed-packages)
+  - [Load installed package](#load-installed-package)
+  - [Searching for packages](#searching-for-packages)
+  - [Unload package](#unload-package)
+  - [Uninstall package](#uninstall-package)
+- With Other Tools
+  - [Webpack Usage](#webpack-usage)
+  - [Electron Usage](#electron-usage)
+- [Building](#building)
+- [Testing](#testing)
+- [License](#license)
+
 ## Usage
 
 #### Install a package
