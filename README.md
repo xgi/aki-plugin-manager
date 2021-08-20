@@ -85,10 +85,9 @@ See the [Webpack Usage](#Webpack-Usage) and
 
 ```js
 search = (
-  {
-    text = "", // (optional) text to search for
-    scope = "" // (optional) registry to use
-  }
+  text: string = "",  // (optional) query text
+  scope: string = "", // (optional) package scope on the registry
+  limit: number = 100 // (optional) max number of results
 ): Promise<RegistrySearchResults>
 ```
 

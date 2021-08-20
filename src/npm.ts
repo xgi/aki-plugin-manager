@@ -1,7 +1,7 @@
-import https from 'https';
-import { IncomingMessage } from 'node:http';
+import https from "https";
+import { IncomingMessage } from "node:http";
 
-const BASE_URL = 'https://registry.npmjs.org';
+const BASE_URL = "https://registry.npmjs.org";
 
 export type PackageManifest = {
   name: string;
@@ -38,49 +38,53 @@ export type RegistrySearchPackage = {
 };
 
 const _cleanVersion = (version: string): string => {
-  if (version === 'latest') return version;
-  return version.replace(/^\D/, '');
+  if (version === "latest") return version;
+  return version.replace(/^\D/, "");
 };
 
 export const getManifest = (
   name: string,
-  version: string,
+  version: string
 ): Promise<PackageManifest> => {
   return new Promise<PackageManifest>((resolve) => {
     https.get(
       `${BASE_URL}/${name}/${_cleanVersion(version)}`,
       (stream: IncomingMessage) => {
-        let body = '';
+        let body = "";
 
-        stream.on('data', (chunk) => {
+        stream.on("data", (chunk) => {
           body += chunk;
         });
 
-        stream.on('end', () => {
+        stream.on("end", () => {
           resolve(JSON.parse(body));
         });
-      },
+      }
     );
   });
 };
 
-export const searchRegistry = ({
-  text = '',
-  scope = '',
-}): Promise<RegistrySearchResults> => {
-  const scopeText = scope ? `scope:${scope} ` : '';
+export const searchRegistry = (
+  text: string,
+  scope: string,
+  limit: number
+): Promise<RegistrySearchResults> => {
+  const scopeText = scope ? `scope:${scope} ` : "";
 
   return new Promise((resolve) => {
-    https.get(`${BASE_URL}/-/v1/search?text=${scopeText}${text}`, (stream) => {
-      let body = '';
+    https.get(
+      `${BASE_URL}/-/v1/search?size=${limit}&text=${scopeText}${text}`,
+      (stream) => {
+        let body = "";
 
-      stream.on('data', (chunk) => {
-        body += chunk;
-      });
+        stream.on("data", (chunk) => {
+          body += chunk;
+        });
 
-      stream.on('end', () => {
-        resolve(JSON.parse(body));
-      });
-    });
+        stream.on("end", () => {
+          resolve(JSON.parse(body));
+        });
+      }
+    );
   });
 };
