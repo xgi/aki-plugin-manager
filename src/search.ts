@@ -1,10 +1,10 @@
-import { RegistrySearchResults } from ".";
-import { searchRegistry } from "./npm";
+import { RegistrySearchResults } from '.';
+import { searchRegistry } from './npm';
 
 export const search = (
-  text: string = "",
-  scope: string = "",
-  limit: number = 100
+  text = '',
+  scope = '',
+  limit = 100,
 ): Promise<RegistrySearchResults> => {
   return searchRegistry(text, scope, limit);
 };
